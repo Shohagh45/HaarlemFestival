@@ -33,6 +33,9 @@ class Event implements \JsonSerializable
             'restaurant_id' =>$this->getRestaurantID(),
         ];
     }
+    //public function getTime() {
+    //    return $this->time;
+   // }
 
     public function getEventId(): int {
         return $this->event_id;
@@ -126,5 +129,9 @@ class Event implements \JsonSerializable
     public function setPicture(string $picture): void {
         $this->picture = $picture;
     }
+    public function setTime($time) {
+        $this->time = $time;
+    }
+
 
 }

@@ -16,7 +16,7 @@ class LoginRepository extends dbconfig {
     public function login($username, $password)
     {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM [User] WHERE username = :username");
+            $stmt = $this->connection->prepare("SELECT * FROM `User` WHERE username = :username");
             $stmt->execute(['username' => $username]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, User::class);
             $user = $stmt->fetch();

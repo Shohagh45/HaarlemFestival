@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             alert("Event Details Edited Successfully");
             window.location.reload();
-        })
+        })//////////////////////////////////////////////
         .catch(error => {
             console.error('Fetch error:', error);
             alert("Error: " + error.message);

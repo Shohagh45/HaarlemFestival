@@ -10,7 +10,7 @@ class Navigationservice
     private $navigationrepo;
     
     public function __construct() {
-        $this->navigationrepo = new navigationrepository(); 
+        $this->navigationrepo = new navigationrepository();
     }
 
     public function get_navigation_repository() {

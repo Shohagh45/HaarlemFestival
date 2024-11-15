@@ -9,6 +9,7 @@ class loginService
     private $loginrepository;
     public function __construct() {
         $this->loginrepository = new loginrepository(); 
+        
     }
 
     public function login($username, $password) {

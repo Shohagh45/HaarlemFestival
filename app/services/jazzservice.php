@@ -16,20 +16,20 @@ class Jazzservice{
         return $this->jazzrepo->getEventdetails();
     }
     public function getTickets($eventId) {
-        return $this->jazzrepo->getTicketsForEvent($eventId);
+        return $this->jazzrepo->getAvailableJazzEvents($eventId);
     }
 
     public function addNewTimeSlot($newTicket){
-        $this->jazzrepo->addNewTimeSlot($newTicket);
+        $this->jazzrepo->addNewJazzTimeSlot($newTicket);
     }
-    public function editEventDetails($eventId, $eventName, $startDate,$endDate, $price, $newLocation,$picture){
-        return $this->jazzrepo->editEventDetails($eventId, $eventName, $startDate,$endDate, $price, $newLocation, $picture);
+    public function editEventDetails($eventId, $artistName, $eventDate, $eventTime, $price, $location, $picture){
+        return $this->jazzrepo->editJazzEventDetails($eventId, $artistName, $eventDate, $eventTime, $price, $location, $picture);
     }
     public function existEvent($newEventName, $eventId){
         return $this->jazzrepo->existEvent($newEventName, $eventId);
     }
     public function removeTimeslot($ticketID){
-        $this->jazzrepo->removeTimeslot($ticketID);
+        $this->jazzrepo->removeJazzEvent($ticketID);
     }
 
 }

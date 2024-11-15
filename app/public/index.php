@@ -10,6 +10,9 @@ use controllers\Jazzcontroller;
 use controllers\Restaurantcontroller;
 use controllers\Historycontroller;
 use controllers\accountcontroller;
+use controllers\JazzArtistController;
+use controllers\JazzEventController;
+use controllers\JazzVenueController;
 use controllers\Navigationcontroller;
 use controllers\overview;
 use controllers\Templatecontroller;
@@ -37,6 +40,10 @@ require_once __DIR__ . '/../controllers/templatecontroller.php';
 require_once __DIR__ . '/../controllers/yummycontroller.php';
 require_once __DIR__ . '/../controllers/resetpasswordcontroller.php';
 require_once __DIR__ . '/../controllers/orderoverviewcontroller.php';
+
+require_once __DIR__ . '/../controllers/JazzArtistController.php';
+require_once __DIR__ . '/../controllers/JazzVenueController.php';
+require_once __DIR__ . '/../controllers/JazzEventController.php';
 
 
 $request = $_SERVER['REQUEST_URI'];
@@ -217,6 +224,26 @@ if (preg_match("/^\/restaurant\/details\/(\d+)$/", $request, $matches)) {
     }
     exit;
 }
+
+
+if (preg_match('/^\/events\/jazz-details\?id=(\d+)$/', $request, $matches)) {
+    $controller = new Jazzcontroller();
+    if ($method === 'GET') {
+        $eventId = $matches[1];
+        $controller->showEventDetails($eventId);
+    }
+    exit;
+}
+
+if (preg_match('/^\/artist\/details\?id=(\d+)$/', $request, $matches)) {
+    $controller = new Jazzcontroller();
+    if ($method === 'GET') {
+        $artistId = $matches[1];
+        $controller->showArtistDetails($artistId);
+    }
+    exit;
+}
+
 //Add routes for actions or admin routes that do not have to do with displaying detail pages or overview pages for your individual events
 switch ($request) {
     case '/login':
@@ -315,7 +342,7 @@ switch ($request) {
         break;
     case '/admin/delete-user':
         $controller = new admincontroller();
-        if ($method === 'POST' && isset ($_POST['user_id'])) {
+        if ($method === 'POST' && isset($_POST['user_id'])) {
             $controller->deleteUsers();
         }
         break;
@@ -497,18 +524,83 @@ switch ($request) {
             $controller->showOverviewTable();
         }
         break;
-    
+
     case '/admin/order-overview/export':
         $controller = new orderoverviewcontroller();
         if ($method == 'POST') {
             $controller->exportExcel();
         }
         break;
-     case '/my-program/payment-failure':
+    case '/my-program/payment-failure':
         $controller = new Myprogramcontroller();
-        if($method == 'GET'){
+        if ($method == 'GET') {
             $controller->showFailure();
-        }    
+        }
+        break;
+        //Artist    
+    case '/artists/create':
+        $controller = new JazzArtistController();
+        if ($method == 'POST') {
+            $controller->store();
+        }
+        break;
+    case '/artists/edit':
+        $controller = new JazzArtistController();
+        if ($method === 'POST') {
+            $controller->update();
+        }
+        break;
+    case '/artists/delete':
+        $controller = new JazzArtistController();
+        if ($method === 'POST') {
+            $controller->delete();
+        }
+        break;
+
+        //Venues    
+    case '/venues/create':
+        $controller = new JazzVenueController();
+        if ($method == 'POST') {
+            $controller->store();
+        }
+        break;
+    case '/venues/edit':
+        $controller = new JazzVenueController();
+        if ($method === 'POST') {
+            $controller->update();
+        }
+        break;
+    case '/venues/delete':
+        $controller = new JazzVenueController();
+        if ($method === 'POST') {
+            $controller->delete();
+        }
+        break;
+
+        //Events    
+    case '/events/create':
+        $controller = new JazzEventController();
+        if ($method == 'POST') {
+            $controller->store();
+        }
+        break;
+    case '/events/edit':
+        $controller = new JazzEventController();
+        if ($method === 'POST') {
+            $controller->update();
+        }
+        break;
+    case '/events/delete':
+        $controller = new JazzEventController();
+        if ($method === 'POST') {
+            $controller->delete();
+        }
+        break;
+    case '/events/by-date':
+        $controller = new JazzEventController();
+        if ($method === 'POST') {
+            $controller->getEventsByDate();
+        }
         break;
     default:
         http_response_code(404);

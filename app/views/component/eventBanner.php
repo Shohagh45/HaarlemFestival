@@ -5,7 +5,7 @@ class EventInformation {
         $venueName = $eventDetails['venueName'];
         $venueLocation = $eventDetails['location'];
         $eventPrice = $eventDetails['price'];
-        $eventImage = $eventDetails['image']
+        $eventImage = $eventDetails['image'];
 
         return "
         <div class = 'danceEventBackground'> 
@@ -14,7 +14,7 @@ class EventInformation {
             <div>$venueLocation</div>
             <div>$eventPrice</div>
         </div>
-        "
+        ";
     }
 }
 ?>

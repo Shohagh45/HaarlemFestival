@@ -18,11 +18,10 @@ class NavigationRepository extends dbconfig {
         parent::__construct();
         $this->navigationModel = new Navigation();
     }
+
     public function getPages() {
         $pages = [];
-
         try {
-        
             $stmt = $this->connection->prepare('SELECT navigation.*, page.name AS pageName FROM navigation INNER JOIN page ON navigation.page_id = page.id');
             $stmt->execute();
             $pages = $stmt->fetchAll(PDO::FETCH_CLASS, Navigation::class); 

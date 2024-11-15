@@ -14,7 +14,7 @@ class registerrepository extends dbconfig {
     
     public function usernameExists($username) {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM [User] WHERE username = :username");
+            $stmt = $this->connection->prepare("SELECT * FROM `User` WHERE username = :username");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
             
@@ -27,7 +27,7 @@ class registerrepository extends dbconfig {
 
     public function emailExists($email) {
         try {
-            $stmt = $this->connection->prepare("SELECT * FROM [User] WHERE email = :email");
+            $stmt = $this->connection->prepare("SELECT * FROM `User` WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
             
@@ -40,7 +40,7 @@ class registerrepository extends dbconfig {
 
     public function getUserIDThroughEmail($email) {
         try {
-            $stmt = $this->connection->prepare("SELECT user_id FROM [User] WHERE email = :email");
+            $stmt = $this->connection->prepare("SELECT user_id FROM `User` WHERE email = :email");
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
             
@@ -65,7 +65,7 @@ class registerrepository extends dbconfig {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             
             try {
-                $stmt = $this->connection->prepare("INSERT INTO [User] (email, username, password_hash, role, created_at) VALUES (:email, :username, :password_hash, :role, :created_at)");
+                $stmt = $this->connection->prepare("INSERT INTO `User` (email, username, password_hash, role, created_at) VALUES (:email, :username, :password_hash, :role, :created_at)");
                 $stmt->bindParam(':email', $email, PDO::PARAM_STR);
                 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
                 $stmt->bindParam(':password_hash', $hashed_password, PDO::PARAM_STR);
@@ -93,7 +93,7 @@ class registerrepository extends dbconfig {
         $phoneNumber = $userInfo['phoneNumber'];
 
         try {
-            $stmt = $this->connection->prepare("UPDATE [User] SET firstname = :firstName, lastname = :lastName, address = :address, phone_number = :phoneNumber WHERE email = :email");
+            $stmt = $this->connection->prepare("UPDATE `User` SET firstname = :firstName, lastname = :lastName, address = :address, phone_number = :phoneNumber WHERE email = :email");
             $stmt->bindParam(':firstName', $firstName, PDO::PARAM_STR);
             $stmt->bindParam(':lastName', $lastName, PDO::PARAM_STR);
             $stmt->bindParam(':address', $address, PDO::PARAM_STR);

@@ -16,6 +16,7 @@ class Ticket implements \JsonSerializable
     private ?string $endTime = null;
     
 
+  
     public function getTicketId(): int {
         return $this->ticket_id;
     }

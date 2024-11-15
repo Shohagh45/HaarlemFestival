@@ -11,20 +11,18 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <?= htmlspecialchars($eventDetails->getName()) ?>
+                        <?= htmlspecialchars($eventDetails-> getArtist()) ?>
                     </h5>
                     <p class="card-text"><strong>Start Date:</strong>
-                        <?= htmlspecialchars($eventDetails->getStartDate()) ?>
+                        <?= htmlspecialchars($eventDetails->getTime()) ?>
                     </p>
                     <p class="card-text"><strong>End Date:</strong>
-                        <?= htmlspecialchars($eventDetails->getEndDate()) ?>
-                    </p>
-                    <p class="card-text"><strong>Location:</strong>
                         <?= htmlspecialchars($eventDetails->getLocation()) ?>
                     </p>
-                    <p class="card-text"><strong>Price:</strong>
+                    <p class="card-text"><strong>Location:</strong>
                         <?= htmlspecialchars($eventDetails->getPrice()) ?>
                     </p>
+                   
                     <div class="mb-3 text-center">
                         <p class="card-text"><strong>Picture:</strong></p>
                         <img src="<?= htmlspecialchars($eventDetails->getPicture()) ?>" alt="Event Image" class="img-fluid" style="max-width: 100%; height: 450px;">
